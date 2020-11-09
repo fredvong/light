@@ -66,7 +66,7 @@ void countPulse() {
       }
     }
     fanSpeed = String(rawFanSpeed);
-    Serial.println("rpm: " + fanSpeed);
+//    Serial.println("rpm: " + fanSpeed);
     readCount = 0;
     pulseCount = 0;
   }

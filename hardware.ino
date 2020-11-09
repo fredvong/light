@@ -1,10 +1,10 @@
 // setting PWM properties
 const int fanFreq = 1000;
-const int fanChannel = 0;
+const int fanChannel = 2; // using timer 1
 const int fanResolution = 8;
 
-const int ledFreq = 1000;
-const int ledChannel = 1;
+const int ledFreq = 2000;
+const int ledChannel = 3; // using timer 1
 const int ledResolution = 8;
 
 String ledSliderValue = "0";

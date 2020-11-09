@@ -47,11 +47,12 @@ void runWebServer() {
   });
 
   // Send a GET request to <ESP_IP>/slider?value=<inputMessage>
-  server.on("/led", HTTP_POST, [] (AsyncWebServerRequest *request) {
+  server.on("/led", HTTP_PUT, [] (AsyncWebServerRequest *request) {
     String inputMessage;
-    // GET input1 value on <ESP_IP>/slider?value=<inputMessage>
+    // in order to have this work, the client should set the "Content-Type"
+    // to "application/x-www-form-urlencoded"
     if (request->hasParam(PARAM_INPUT, true)) {
-      inputMessage = request->getParam(PARAM_INPUT)->value();
+      inputMessage = request->getParam(PARAM_INPUT, true)->value();
       ledSliderValue = inputMessage;
       ledcWrite(ledChannel, inputMessage.toInt());
     }
@@ -63,11 +64,12 @@ void runWebServer() {
   });
 
   // Send a GET request to <ESP_IP>/slider?value=<inputMessage>
-  server.on("/fan", HTTP_POST, [] (AsyncWebServerRequest *request) {
+  server.on("/fan", HTTP_PUT, [] (AsyncWebServerRequest *request) {
     String inputMessage;
-    // GET input1 value on <ESP_IP>/slider?value=<inputMessage>
+    // in order to have this work, the client should set the "Content-Type"
+    // to "application/x-www-form-urlencoded"
     if (request->hasParam(PARAM_INPUT, true)) {
-      inputMessage = request->getParam(PARAM_INPUT)->value();
+      inputMessage = request->getParam(PARAM_INPUT, true)->value();
       setFan(inputMessage);
     }
     else {

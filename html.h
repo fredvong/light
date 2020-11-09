@@ -17,9 +17,9 @@ const char index_html[] PROGMEM = R"rawliteral(
 <body>
   <h2>VKON LED Light Controller</h2>
   <p>Fan Speed: <span id="textFanSpeed">%FANSPEED%</span> rpm</p>
-  <p><span id="LEDSliderValue">%LEDSLIDERVALUE%</span></p>
+  <p>LED Output: <span id="LEDSliderValue">%LEDSLIDERVALUE%</span></p>
   <p><input type="range" onchange="updateLedSliderPWM(this)" id="ledPWMSlider" min="0" max="255" value="%LEDSLIDERVALUE%" step="1" class="slider"></p>
-  <p><span id="FanSliderValue">%FANSLIDERVALUE%</span></p>
+  <p>Fan Output: <span id="FanSliderValue">%FANSLIDERVALUE%</span></p>
   <p><input type="range" onchange="updateFanSliderPWM(this)" id="fanPWMSlider" min="0" max="255" value="%FANSLIDERVALUE%" step="1" class="slider"></p>
 <script>
 
@@ -28,9 +28,9 @@ function updateLedSliderPWM(element) {
   document.getElementById("LEDSliderValue").innerHTML = sliderValue;
   console.log("LED slider value:" + sliderValue);
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/led", true);
-  //Send the proper header information along with the request
-//  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.open("PUT", "/led", true);
+  // Send the proper header information along with the request
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send("value="+sliderValue);
 }
 
@@ -39,9 +39,9 @@ function updateFanSliderPWM(element, deviceNumber) {
   document.getElementById("FanSliderValue").innerHTML = sliderValue;
   console.log("FAN slider value" + sliderValue);
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/fan", true);
-  //Send the proper header information along with the request
-//  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.open("PUT", "/fan", true);
+  // Send the proper header information along with the request
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send("value="+sliderValue);
 }
 
