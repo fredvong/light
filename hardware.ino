@@ -45,5 +45,5 @@ void setLED(String value) {
 
 void setFan(String value) {
   fanSliderValue = value;
-  ledcWrite(fanChannel, ledSliderValue.toInt()); 
+  ledcWrite(fanChannel, fanSliderValue.toInt()); 
 }

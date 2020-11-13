@@ -70,7 +70,8 @@ void runWebServer() {
     // to "application/x-www-form-urlencoded"
     if (request->hasParam(PARAM_INPUT, true)) {
       inputMessage = request->getParam(PARAM_INPUT, true)->value();
-      setFan(inputMessage);
+      fanSliderValue = inputMessage;
+      setFan(fanSliderValue);
     }
     else {
       inputMessage = "No message sent";
